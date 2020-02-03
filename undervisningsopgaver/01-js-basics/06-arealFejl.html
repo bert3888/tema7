@@ -14,10 +14,17 @@
         let bredde = prompt("Angiv bredde");
 
         function areal(l, b) {
-            return (l * b);
+            let a = (l * b);
+            if (a == 0) {
+                return (`Husk længde og bredde skal være tal. \n Prøv igen`);
+            } else if (isNaN(a)) {
+                return (`Fejl \n Prøv igen med tal`);
+            } else {
+                return (`Arealet er ${a}. \n Vil du lave et nyt areal?`);
+            }
         }
 
-        let resultat = `Arealet er ${areal(længde, bredde)}. Har du brug for et nyt areal?`;
+        let resultat = areal(længde, bredde);
 
         confirm(resultat);
 
