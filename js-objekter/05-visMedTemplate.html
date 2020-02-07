@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title></title>
+    <style>
+        article {
+            border: 1px solid black
+        }
+    </style>
+</head>
+
+<body>
+    <section class="container"></section>
+    <template>
+        <article>
+            <h2></h2>
+            <img src="" alt="">
+            <p class="p1">Type: </p>
+            <p class="p2">Levested: </p>
+        </article>
+    </template>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", start);
+        let pretiosas = [{
+                "navn": "gris",
+                "type": "pattedyr",
+                "levested": "grisefarmen",
+                "billede": "http://mabe-kea.dk/E19/pics/pig.png"
+            },
+            {
+                "navn": "frø",
+                "type": "amfibie",
+                "levested": "vandhullet",
+                "billede": "http://mabe-kea.dk/E19/pics/frog.png"
+            },
+            {
+                "navn": "ræv",
+                "type": "pattedyr",
+                "levested": "skoven",
+                "billede": "http://mabe-kea.dk/E19/pics/fox.png"
+            },
+            {
+                "navn": "sild",
+                "type": "fisk",
+                "levested": "havet",
+                "billede": "http://mabe-kea.dk/E19/pics/sild.jpg"
+            },
+            {
+                "navn": "krokodille",
+                "type": "krybdyr",
+                "levested": "floden",
+                "billede": "http://mabe-kea.dk/E19/pics/kroko.jpg"
+            }
+        ]
+
+        function start() {
+            const container = document.querySelector(".container");
+            const pretiosaTemplate = document.querySelector("template");
+            pretiosas.forEach(pretiosa => {
+                let klon = pretiosaTemplate.cloneNode(true).content;
+                klon.querySelector("h2").textContent = pretiosa.navn;
+                klon.querySelector("img").src = pretiosa.billede;
+                klon.querySelector(".p1").textContent += pretiosa.type;
+                klon.querySelector(".p2").textContent += pretiosa.levested;
+                container.appendChild(klon);
+            })
+        }
+    </script>
+</body></html>

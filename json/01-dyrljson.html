@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title></title>
+    <style>
+        article {
+            border: 1px solid black
+        }
+    </style>
+</head>
+
+<body>
+    <section class="container"></section>
+    <template>
+        <article>
+            <h2></h2>
+            <img src="" alt="">
+            <p class="p1">Type: </p>
+            <p class="p2">Levested: </p>
+        </article>
+    </template>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", preStart);
+        let pretiosas = [];
+
+        function preStart() {
+            hentData();
+        }
+
+        async function hentData() {
+            const response = await fetch("alleDyr.json");
+            console.log(response);
+            pretiosas = await response.json();
+            console.log(pretiosas);
+            start();
+
+        }
+
+        function start() {
+            const container = document.querySelector(".container");
+            const pretiosaTemplate = document.querySelector("template");
+            pretiosas.forEach(pretiosa => {
+                let klon = pretiosaTemplate.cloneNode(true).content;
+                klon.querySelector("h2").textContent = pretiosa.navn;
+                klon.querySelector("img").src = pretiosa.billede;
+                klon.querySelector(".p1").textContent += pretiosa.type;
+                klon.querySelector(".p2").textContent += pretiosa.levested;
+                container.appendChild(klon);
+            })
+        }
+    </script>
+</body></html>
